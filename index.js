@@ -32,7 +32,7 @@ app.post("/api/users", (req, res) => {
 });
 
 app.get("/api/users", (_req, res) => {
-  res.json(Array.from(userRepo.users.values()));
+  res.json(userRepo.findAll());
 });
 
 app.post("/api/users/:_id/exercises", (req, res) => {

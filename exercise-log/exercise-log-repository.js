@@ -1,13 +1,14 @@
+const logs = new Map();
+
 class ExerciseLogRepository {
   constructor(userRepository) {
     this.userRepository = userRepository;
-    this.logs = new Map();
   }
 
   addLog(log) {
     const user = this.userRepository.findByUsername(log.username);
     if (!user) throw new Error("User not found");
-    this.logs.set(log._id, log);
+    logs.set(log._id, log);
     return log;
   }
 
@@ -16,7 +17,7 @@ class ExerciseLogRepository {
     const user = this.userRepository.findByUsername(username);
     if (!user) throw new Error("User not found");
 
-    const filteredLogs = Array.from(this.logs.values())
+    const filteredLogs = Array.from(logs.values())
       .filter(
         (log) =>
           log.username === username &&
